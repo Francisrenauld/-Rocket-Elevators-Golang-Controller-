@@ -63,7 +63,7 @@ func (b *Battery)CreateColumns(_amountOfColumns, _amountOfFloors, _amountOfEleva
 	floor = 1
 
 	for i := 0; i < _amountOfColumns; i++{
-		var counter = 0
+		
 		var servedFloors []int
 		//
 		for j := 0; float64(j) < amountOfFloorsPerColumn; j++{
@@ -72,14 +72,14 @@ func (b *Battery)CreateColumns(_amountOfColumns, _amountOfFloors, _amountOfEleva
 
 				servedFloors = append(servedFloors, floor)
 				floor++;
-				counter++
+				
 			}
 		}
 		if !contains(servedFloors, 1){
 			servedFloors = append(servedFloors, 1)
 			sort.Ints(servedFloors)
 		}
-		column := NewColumn(columnID, counter, _amountOfElevatorPerColumn, servedFloors, false)
+		column := NewColumn(columnID, _amountOfFloors, _amountOfElevatorPerColumn, servedFloors, false)
 		b.columnsList = append(b.columnsList, *column)
 		columnID++;
 	}
